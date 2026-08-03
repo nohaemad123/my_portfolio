@@ -1,0 +1,150 @@
+{
+  "navbar": {
+    "home": "Home",
+    "about": "About",
+    "skills": "Skills",
+    "experience": "Experience",
+    "projects": "Projects",
+    "contact": "Contact",
+    "job": "Front-End Developer",
+    "lets_talk": "Let's talk",
+    "description": "I'd love to hear from you!",
+    "status": "Available for new opportunities",
+    "contact_with": "Contact with me"
+  },
+  "hero_section": {
+    "badge": "Available to work",
+    "title": "I build digital products that make an",
+    "span": "Impact",
+    "description": "I'm a Front-End Developer with 5+ years of experience building modern web applications. I specialize in Angular and also work with React, focusing on responsive, scalable, and user-friendly interfaces with clean, maintainable code.",
+    "download_cv": "Download cv",
+    "view_projects": "View projects"
+  },
+  "stats_section": {
+    "years": "Years",
+    "experience": "experience",
+    "experience_description": "Delivering quality solutions",
+    "projects": "Projects",
+    "created": "created",
+    "project_description": "Access different domains",
+    "project_description_domains": "domains",
+    "technologies": "Technologies",
+    "technologies_description": "Front end & tools I work with",
+    "client": "Client",
+    "satistication": "satistication",
+    "client_description": "Focus on quality and value"
+  },
+  "services": {
+    "title": "What I Can Do",
+    "description": "I create modern, responsive, and high-performance web applications with clean code and user-focused design."
+  },
+  "skills": {
+    "title": "My skills",
+    "description": "Technologies, frameworks, libraries and tools that I use to build modern, scalable and high-performance web applications.",
+    "technical_skills": "Technical skills",
+    "personal_skills": "Personal skills"
+  },
+  "experience": {
+    "title": "My experience",
+    "description": "A summary of my professional journey, highlighting the roles, projects, and technologies I've worked with over the years."
+  },
+
+  "education": {
+    "title": "My education",
+    "description": "My academic background and professional training that shaped my journey as a Front-End Developer",
+    "computer_science": "Bachelor of Computer Science",
+    "elshorouk_academy": "El-Shorouk Academy",
+    "computer_science_desc": "Studied computer science fundamentals, data structures, algorithms and software engineering principles.",
+    "front_diploma": "Front-End Developer Diploma",
+    "route_academy": "Route Academy",
+    "front_diploma_desc": "Completed an intensive training program focused on modern front-end technologies and real-world projects."
+  },
+  "footer": {
+    "title": "Let's build something Great",
+    "description": "Interested in working together? let's talk",
+    "get_touch": "Get in touch",
+    "contact": "Contact",
+    "address": "Al Khalidi St, Al-Nozha, Cairo, Egypt",
+    "quick_links": "Quick links",
+    "education": "Education",
+    "follow_me": "Follow me",
+    "copyright": "All Rights Reserved",
+    "built_with": "Built with ❤️ using nextjs and Tailwind CSS"
+  },
+  "featured_projects": {
+    "title": "Featured projects",
+    "description": "Explore a collection of professional and personal projects that reflect my experience in building responsive, scalable, and user-friendly web applications.",
+    "more_projects": "More projects"
+  },
+  "all_projects": {
+    "title": "All projects",
+    "projects": "Projects",
+    "description_1": "A collected of",
+    "description_2": "projects i have built with passion and modern technologies each project represents a unique challenge and solution",
+    "search": "Search projects by name, tech or keyword ...",
+    "newest": "Newest",
+    "oldest": "Oldest",
+    "view_project": "View project",
+    "load_projects": "Load more projects",
+    "live_demo": "Live demo",
+    "view_details": "View details",
+    "view_github": "View on github"
+  },
+  "interested": {
+    "title": "Interested in working together?",
+    "description": "I'm always open to discussing new projects and opportunities",
+    "button": "Let's work together"
+  },
+  "project_details": {
+    "overview": "Overview",
+    "personal_information": "Personal information",
+    "role": "Role",
+    "duration": "Duration",
+    "project_type": "Project type",
+    "date": "Date",
+    "project_status": "Project status",
+    "technologies_used": "Technologies used",
+    "key_features": "Key features",
+    "challenges_solution": "Challenges & solutions",
+    "Challenges": "Challenges",
+    "solutions": "Solutions",
+    "what_learned": "What is learned",
+    "previous_project": "Previous project",
+    "next_project": "Next project"
+  },
+  "about": {
+    "title": "I build digital products that make an",
+    "impact": "Impact.",
+    "years_experience": "Years of experience",
+    "my_story": "My story",
+    "description_1": "I started my journey in web development because I enjoy creating things that people can actually use. Since then, I've had the opportunity to work on different types of projects, from company websites to enterprise applications, gaining valuable experience with every project.",
+    "description_2": "I mainly work with Angular and React, focusing on building responsive, scalable, and user-friendly interfaces. I believe that clean code, attention to detail, and continuous learning are the keys to delivering great digital products.",
+    "description_3": "Every project is a new opportunity to learn, improve, and create something meaningful.",
+    "technologies": "Technologies i work with it",
+    "experience": "Experience",
+    "experience_desc": "My professional journey and the experience that contributed to shaping my career.",
+    "what_do":"What i do?",
+    "what_do_desc":"Building modern, scalable, and user-focused web applications."
+  },
+  "contact":{
+    "title":"Let's work",
+    "together":"together",
+    "description":"have a project in mind or just want to say hello? i'd love to hear from you. fill out the form or reach out through any of these chanels",
+    "email":"Email",
+    "phone":"Phone",
+    "location":"Location",
+    "whatsapp":"Whatsapp",
+    "send_message":"Send me message",
+    "full_name":"Full name",
+    "full_name_placeholder":"Enter full name",
+  "email_placeholder":"Enter email",
+  "phone_placeholder":"Enter phone number",
+  "subject":"Subject",
+  "subject_placeholder":"Enter subject",
+  "message":"Message",
+  "message_placeholder":"Type your message here.",
+  "send_message_button":"Send message",
+  "sending":"Sending...",
+  "note":"Your information is safe with me. i will never share your data"
+  }
+}
