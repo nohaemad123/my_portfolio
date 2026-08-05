@@ -7,18 +7,16 @@ export async function POST(req: Request) {
   try {
     const { name, email, subject, message, phone } = await req.json();
 
-    await resend.emails.send({
-      from: "Portfolio <onboarding@resend.dev>", // أو دومينك
+    const result = await resend.emails.send({
+      from: "Portfolio <onboarding@resend.dev>",
       to: process.env.CONTACT_EMAIL!,
-      subject: subject,
-
+      subject,
       html: `
         <h2>New Contact Message</h2>
 
         <p><strong>Name:</strong> ${name}</p>
         <p><strong>Email:</strong> ${email}</p>
-                <p><strong>phone:</strong> ${phone}</p>
-
+        <p><strong>Phone:</strong> ${phone}</p>
         <p><strong>Subject:</strong> ${subject}</p>
 
         <hr />
@@ -27,10 +25,21 @@ export async function POST(req: Request) {
       `,
     });
 
-    return NextResponse.json({ success: true });
-  } catch (error) {
-    console.log(error);
+    console.log("Resend Result:", result);
 
-    return NextResponse.json({ success: false }, { status: 500 });
+    return NextResponse.json({
+      success: true,
+      result,
+    });
+  } catch (error) {
+    console.error("Resend Error:", error);
+
+    return NextResponse.json(
+      {
+        success: false,
+        error: error,
+      },
+      { status: 500 },
+    );
   }
 }
