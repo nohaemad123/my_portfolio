@@ -12,6 +12,7 @@ import { FaGithub } from "react-icons/fa";
 import { FaLinkedinIn } from "react-icons/fa";
 import { FaFacebookF } from "react-icons/fa";
 import { useLanguage } from "../language-provider";
+import { motion } from "motion/react";
 
 export default function Footer() {
   const { locale, t } = useLanguage();
@@ -25,6 +26,7 @@ export default function Footer() {
           preserveAspectRatio="none"
         >
           <defs>
+            {" "}
             <linearGradient
               id="footer-wave"
               x1="0%"
@@ -53,35 +55,75 @@ export default function Footer() {
         </div>
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent,rgba(0,0,0,.25))]" />
         <div className="relative z-10  pb-10">
-          <section className="py-8 text-center flex flex-col gap-y-3 items-center">
-            <h3 className="text-2xl md:text-3xl lg:text-4xl font-extrabold">
-              {t.footer.title}
-            </h3>
-            <p className="font-medium text-gray-300 text-md">
-              {t.footer.description}
-            </p>
-            <div className="flex flex-col md:flex-row gap-y-4 md:gap-y-0 gap-x-4">
-              <Link
-                href="/contact"
-                className="bg-primary  text-white border text-lg font-bold border-primary hover:bg-transparent hover:text-primary transition-all duration-300 px-6 py-3 rounded-lg flex items-center shadow-lg gap-3 cursor-pointer"
+          <motion.section
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <section className="py-8 text-center flex flex-col gap-y-3 items-center">
+              <h3 className="text-2xl md:text-3xl lg:text-4xl font-extrabold">
+                {t.footer.title}
+              </h3>
+              <p className="font-medium text-gray-300 text-md">
+                {t.footer.description}
+              </p>
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.96 }}
+                className="flex flex-col md:flex-row gap-y-4 md:gap-y-0 gap-x-4"
               >
-                <LuMailOpen /> {t.footer.get_touch}
-                {locale === "ar" && (
-                  <FaArrowRight className="rotate-180 transition-transform duration-300 group-hover:-translate-x-1" />
-                )}
-                {locale === "en" && (
-                  <FaArrowRight className="transition-transform duration-300 group-hover:translate-x-1" />
-                )}
-              </Link>
-              <button className="bg-transparent  text-white border text-lg font-bold border-gray-300 hover:bg-transparent hover:text-primary transition-all duration-300 px-6 py-3 rounded-lg flex items-center shadow-lg gap-3 cursor-pointer">
-                <FileText size={16} /> {t.hero_section.download_cv} <HiArrowDownTray />
-              </button>
-            </div>
-          </section>
+                <Link
+                  href="/contact"
+                  className="bg-primary  text-white border text-lg font-bold border-primary hover:bg-transparent hover:text-primary transition-all duration-300 px-6 py-3 rounded-lg flex items-center shadow-lg gap-3 cursor-pointer"
+                >
+                  <LuMailOpen /> {t.footer.get_touch}
+                  {locale === "ar" && (
+                    <FaArrowRight className="rotate-180 transition-transform duration-300 group-hover:-translate-x-1" />
+                  )}
+                  {locale === "en" && (
+                    <FaArrowRight className="transition-transform duration-300 group-hover:translate-x-1" />
+                  )}
+                </Link>
+                <button className="bg-transparent  text-white border text-lg font-bold border-gray-300 hover:bg-transparent hover:text-primary transition-all duration-300 px-6 py-3 rounded-lg flex items-center shadow-lg gap-3 cursor-pointer">
+                  <FileText size={16} /> {t.hero_section.download_cv}{" "}
+                  <HiArrowDownTray />
+                </button>
+              </motion.div>
+            </section>
+          </motion.section>
 
           <section className=" py-6 px-8 rounded-3xl bg-gradient-to-br from-[#101A33] via-[#0E162C] to-[#0A1326] border border-white/10 shadow-[0_20px_60px_rgba(0,0,0,.35)] backdrop-blur-xl">
-            <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-3">
-              <div className="flex flex-col gap-y-4 ">
+            <motion.div
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true }}
+              variants={{
+                hidden: {},
+                show: {
+                  transition: {
+                    staggerChildren: 0.18,
+                  },
+                },
+              }}
+              className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-3"
+            >
+              <motion.div
+                variants={{
+                  hidden: {
+                    opacity: 0,
+                    y: 35,
+                  },
+                  show: {
+                    opacity: 1,
+                    y: 0,
+                    transition: {
+                      duration: 0.5,
+                    },
+                  },
+                }}
+                className="flex flex-col gap-y-4 "
+              >
                 <h3 className="text-lg font-bold uppercase tracking-[1px] text-primary/90">
                   {t.footer.contact}
                 </h3>
@@ -109,8 +151,23 @@ export default function Footer() {
                   </span>
                   {t.footer.address}
                 </p>
-              </div>
-              <div className="flex flex-col gap-y-4 ">
+              </motion.div>
+              <motion.div
+                variants={{
+                  hidden: {
+                    opacity: 0,
+                    y: 35,
+                  },
+                  show: {
+                    opacity: 1,
+                    y: 0,
+                    transition: {
+                      duration: 0.5,
+                    },
+                  },
+                }}
+                className="flex flex-col gap-y-4 "
+              >
                 <h3 className="text-lg font-bold uppercase tracking-[1px] text-primary/90">
                   {t.footer.quick_links}
                 </h3>
@@ -128,14 +185,12 @@ export default function Footer() {
                       {t.navbar.about}
                     </Link>
                   </li>
-
                   <li>
                     <Link
                       href="/#skills"
                       className="transition hover:text-primary"
                     >
-                                           {t.navbar.skills}
-
+                      {t.navbar.skills}
                     </Link>
                   </li>
                   <li>
@@ -143,8 +198,7 @@ export default function Footer() {
                       href="/#experience"
                       className="transition hover:text-primary"
                     >
-                                            {t.navbar.experience}
-
+                      {t.navbar.experience}
                     </Link>
                   </li>
                   <li>
@@ -152,61 +206,121 @@ export default function Footer() {
                       href="/#projects"
                       className="transition hover:text-primary"
                     >
-                                            {t.navbar.projects}
-
+                      {t.navbar.projects}
                     </Link>
                   </li>
-
                   <li>
                     <Link
                       href="/#education"
                       className="transition hover:text-primary"
                     >
-                                            {t.education.education}
-
+                      {t.education.education}
                     </Link>
                   </li>
                 </ul>
-              </div>
-              <div className="flex flex-col gap-y-4 ">
+              </motion.div>
+              <motion.div
+                variants={{
+                  hidden: {
+                    opacity: 0,
+                    y: 35,
+                  },
+                  show: {
+                    opacity: 1,
+                    y: 0,
+                    transition: {
+                      duration: 0.5,
+                    },
+                  },
+                }}
+                className="flex flex-col gap-y-4 "
+              >
                 <h3 className="text-lg font-bold uppercase tracking-[1px] text-primary/90">
                   {t.footer.follow_me}
                 </h3>
                 <p className="flex gap-x-3 items-center text-lg text-gray-200">
-                  <span className="flex h-9 w-9 items-center justify-center rounded-md bg-gradient-to-br from-[#223867] via-[#18284A] to-[#111D36] border border-white/5">
+                  <motion.span
+                    whileHover={{
+                      scale: 1.15,
+                      rotate: 8,
+                    }}
+                    transition={{
+                      duration: 0.25,
+                    }}
+                    className="flex h-9 w-9 items-center justify-center rounded-md bg-gradient-to-br from-[#223867] via-[#18284A] to-[#111D36] border border-white/5"
+                  >
                     <FaGithub className="text-xl text-white" />
-                  </span>
+                  </motion.span>
                   <a href="">Github</a>
                 </p>
                 <p className="flex gap-x-3 items-center text-lg text-gray-200">
-                  <span className="flex h-9 w-9 items-center justify-center rounded-md bg-gradient-to-br from-[#223867] via-[#18284A] to-[#111D36] border border-white/5">
+                  <motion.span
+                    whileHover={{
+                      scale: 1.15,
+                      rotate: 8,
+                    }}
+                    transition={{
+                      duration: 0.25,
+                    }}
+                    className="flex h-9 w-9 items-center justify-center rounded-md bg-gradient-to-br from-[#223867] via-[#18284A] to-[#111D36] border border-white/5"
+                  >
                     <FaLinkedinIn className="text-xl text-white" />
-                  </span>
+                  </motion.span>
                   <a href="">Linkedin</a>
                 </p>
                 <p className="flex gap-x-3 items-center text-lg text-gray-200">
-                  <span className="flex h-9 w-9 items-center justify-center rounded-md bg-gradient-to-br from-[#223867] via-[#18284A] to-[#111D36] border border-white/5">
+                  <motion.span
+                    whileHover={{
+                      scale: 1.15,
+                      rotate: 8,
+                    }}
+                    transition={{
+                      duration: 0.25,
+                    }}
+                    className="flex h-9 w-9 items-center justify-center rounded-md bg-gradient-to-br from-[#223867] via-[#18284A] to-[#111D36] border border-white/5"
+                  >
                     <FaFacebookF className="text-xl text-white" />
-                  </span>
+                  </motion.span>
                   Facebook
                 </p>
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
             <div className="mx-auto h-px w-full bg-white/10 mt-5"></div>
             <section className="py-5 text-center flex flex-col gap-y-2">
-              <h3 className="text-4xl md:text-5xl font-extrabold uppercase tracking-[3px] text-primary">
+              <motion.h3
+                initial={{
+                  opacity: 0,
+                  letterSpacing: "-5px",
+                  scale: 0.9,
+                }}
+                whileInView={{
+                  opacity: 1,
+                  letterSpacing: "3px",
+                  scale: 1,
+                }}
+                transition={{
+                  duration: 0.8,
+                }}
+                className="text-4xl md:text-5xl font-extrabold uppercase tracking-[3px] text-primary"
+              >
                 NOHA EMAD
-              </h3>
+              </motion.h3>
               <p className="font-medium text-gray-100 text-md">
                 {t.navbar.job}
               </p>
             </section>
             <div className="mt-3 h-px w-full bg-white/10"></div>
 
-            <section className="flex flex-col items-center justify-between gap-3 pt-4 text-sm text-gray-400 md:flex-row">
+            <motion.section
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.5 }}
+              className="flex flex-col items-center justify-between gap-3 pt-4 text-sm text-gray-400 md:flex-row"
+            >
               <p>&copy; noha emad | {t.footer.copyright} </p>
               <p>{t.footer.built_with}</p>
-            </section>
+            </motion.section>
           </section>
         </div>
       </div>

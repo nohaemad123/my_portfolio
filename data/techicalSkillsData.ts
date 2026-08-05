@@ -23,7 +23,11 @@ import {
 } from "react-icons/si";
 
 import { FaProjectDiagram, FaCodeBranch, FaCss3 } from "react-icons/fa";
-import { FaLayerGroup, FaPeopleGroup } from "react-icons/fa6";
+import {
+  FaLayerGroup,
+  FaPeopleGroup,
+  FaWandMagicSparkles,
+} from "react-icons/fa6";
 import { MdWidgets, MdViewQuilt, MdCloud } from "react-icons/md";
 
 export const technicalSkillsData = [
@@ -133,5 +137,13 @@ export const technicalSkillsData = [
       { name: "REST API", icon: SiAxios },
       { name: "Axios", icon: SiAxios },
     ],
+  },
+  {
+    id: 9,
+    category: {
+      en: "Animation & Motion",
+      ar: "الأنيميشن والحركة",
+    },
+    skills: [{ name: "Motion", icon: FaWandMagicSparkles }],
   },
 ];

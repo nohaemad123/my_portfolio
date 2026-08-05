@@ -19,6 +19,7 @@ import { MdWavingHand } from "react-icons/md";
 import ContactInfo from "../contact_info/ContactInfo";
 import { FaCircle } from "react-icons/fa";
 import { useLanguage } from "../language-provider";
+import {motion} from "motion/react";
 
 export default function NavbarSidebar() {
     const { locale, setLocale, t } = useLanguage();

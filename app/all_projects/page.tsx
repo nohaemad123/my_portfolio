@@ -21,11 +21,36 @@ import { ProjectType } from "@/types/projectType";
 import StatisiticsSection from "@/components/statistics_section/StatisiticsSection";
 import { useLanguage } from "@/components/language-provider";
 import InterestedSection from "@/components/interested_section/InterestedSection";
+import { motion } from "motion/react";
 
 export default function page() {
   const { locale, t } = useLanguage();
 
   const [search, setSearch] = useState("");
+
+  const container = {
+    hidden: {},
+    show: {
+      transition: {
+        staggerChildren: 0.12,
+      },
+    },
+  };
+
+  const item = {
+    hidden: {
+      opacity: 0,
+      y: 35,
+    },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.4,
+      },
+    },
+  };
+
   const allLabel = locale === "en" ? "All" : "الكل";
 
   const [activeFilter, setActiveFilter] = useState(allLabel);
@@ -117,9 +142,25 @@ export default function page() {
 
           <StatisiticsSection />
 
-          <div className="bg-white dark:bg-[#151515] px-10 py-8 rounded-md shadow-md border border-gray-200dark:border-[#2a2a2a] mt-10">
+          <motion.div
+            layout
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3 }}
+            className="bg-white dark:bg-[#151515] px-10 py-8 rounded-md shadow-md border border-gray-200dark:border-[#2a2a2a] mt-10"
+          >
             <form className="flex flex-col gap-y-4 md:gap-y-0 md:flex-row justify-between">
-              <div className="relative">
+              <motion.div
+                whileFocus={{
+                  scale: 1.02,
+                }}
+                initial={{ opacity: 0, x: locale === "ar" ? 40 : -40 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.1 }}
+                className="relative"
+              >
                 <Input
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
@@ -132,9 +173,14 @@ export default function page() {
                 <div className="absolute end-3 top-3 text-gray-500 dark:text-gray-300">
                   <CiSearch />
                 </div>
-              </div>
+              </motion.div>
 
-              <div>
+              <motion.div
+                initial={{ opacity: 0, x: locale === "ar" ? -40 : 40 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2 }}
+              >
                 <Select
                   value={sortBy}
                   onValueChange={setSortBy}
@@ -160,27 +206,53 @@ export default function page() {
                     </SelectItem>
                   </SelectContent>
                 </Select>
-              </div>
+              </motion.div>
             </form>
 
             <div className="flex items-center flex-wrap gap-y-3 justify-center mt-5 gap-x-4">
-              {filters.map((filter) => (
-                <button
+              {filters.map((filter, index) => (
+                <motion.button
+                  type="button"
                   key={filter}
+                  initial={{
+                    opacity: 0,
+                    y: 20,
+                  }}
+                  whileInView={{
+                    opacity: 1,
+                    y: 0,
+                  }}
+                  viewport={{ once: true }}
+                  transition={{
+                    delay: index * 0.06,
+                  }}
+                  whileHover={{
+                    y: -3,
+                    scale: 1.03,
+                  }}
+                  whileTap={{
+                    scale: 0.96,
+                  }}
                   onClick={() => setActiveFilter(filter)}
                   className={cn(
-                    `rounded-md border px-8 py-2 transition-all duration-300`,
+                    "rounded-md border px-8 py-2 transition-all duration-300",
                     activeFilter === filter
-                      ? "bg-primary text-white border-primary"
-                      : `bg-gray-100/80 dark:bg-[#1f1f1f] dark:border-[#2a2a2a] dark:text-gray-200 hover:border-primary`,
+                      ? "border-primary bg-primary text-white"
+                      : "border-gray-200 bg-gray-100/80 hover:border-primary dark:border-[#2a2a2a] dark:bg-[#1f1f1f] dark:text-gray-200",
                   )}
                 >
                   {filter} ({getCategoryCount(filter)})
-                </button>
+                </motion.button>
               ))}
             </div>
-          </div>
-          <div className="grid grid-cols-1 gap-x-6 gap-y-3 md:grid-cols-2 lg:grid-cols-3 mb-10 mt-10">
+          </motion.div>
+          <motion.div
+            variants={container}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+            className="grid grid-cols-1 gap-x-6 gap-y-3 md:grid-cols-2 lg:grid-cols-3 mb-10 mt-10"
+          >
             {filteredProjects
               .slice(0, visibleProjects)
               .map((project, index) => (
@@ -192,19 +264,35 @@ export default function page() {
                   }}
                 />
               ))}
-          </div>
+          </motion.div>
 
           {visibleProjects < filteredProjects.length && (
-            <div className="mt-10 flex justify-center">
-              <Button
-                onClick={() => setVisibleProjects((prev) => prev + 8)}
-                className="px-8"
+            <motion.div
+              initial={{ opacity: 0, y: 25 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4 }}
+              className="mt-10 flex justify-center"
+            >
+              <motion.div
+                whileHover={{
+                  scale: 1.05,
+                  y: -2,
+                }}
+                whileTap={{
+                  scale: 0.95,
+                }}
               >
-                {t.all_projects.load_projects}
-              </Button>
-            </div>
+                <Button
+                  onClick={() => setVisibleProjects((prev) => prev + 8)}
+                  className="px-8"
+                >
+                  {t.all_projects.load_projects}
+                </Button>
+              </motion.div>
+            </motion.div>
           )}
-        <InterestedSection/>
+          <InterestedSection />
         </div>
       </div>
     </>

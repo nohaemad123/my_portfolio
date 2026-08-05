@@ -8,9 +8,34 @@ import { CiLock } from "react-icons/ci";
 import { useState } from "react";
 import { toast } from "sonner";
 import { useLanguage } from "../language-provider";
+import { motion, type Variants } from "motion/react";
 
 export default function ContactMe() {
   const { locale, t } = useLanguage();
+
+  const container: Variants = {
+    hidden: {},
+    show: {
+      transition: {
+        staggerChildren: 0.12,
+      },
+    },
+  };
+
+  const itemVariant: Variants = {
+    hidden: {
+      opacity: 0,
+      y: 30,
+    },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.45,
+        ease: "easeOut",
+      },
+    },
+  };
 
   const [form, setForm] = useState({
     name: "",
@@ -70,12 +95,28 @@ export default function ContactMe() {
   };
 
   return (
-    <div className="bg-white dark:bg-[#151515] w-full rounded-2xl border border-gray-200 dark:border-[#2a2a2a] shadow-md p-8 flex flex-col">
+    <motion.div
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5 }}
+      className="bg-white dark:bg-[#151515] w-full rounded-2xl border border-gray-200 dark:border-[#2a2a2a] shadow-md p-8 flex flex-col"
+    >
       <h3 className="text-2xl font-extrabold">{t.contact.send_message}</h3>
 
-      <form className="mt-5 flex flex-col gap-y-5" onSubmit={handleSubmit}>
+      <motion.form
+        variants={container}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true }}
+        className="mt-5 flex flex-col gap-y-5"
+        onSubmit={handleSubmit}
+      >
         <div className="grid grid-cols-12 md:gap-x-10 gap-y-5">
-          <div className="col-span-12 lg:col-span-6 flex flex-col gap-y-3">
+          <motion.div
+            variants={itemVariant}
+            className="col-span-12 lg:col-span-6 flex flex-col gap-y-3"
+          >
             <label className="text-md font-bold">{t.contact.full_name}</label>
 
             <Input
@@ -85,9 +126,12 @@ export default function ContactMe() {
               placeholder={t.contact.full_name_placeholder}
               className="h-10! px-5 w-full rounded-sm! border-gray-400! dark:border-[#444]! dark:bg-[#0f0f0f] dark:text-white dark:placeholder:text-gray-500"
             />
-          </div>
+          </motion.div>
 
-          <div className="col-span-12 lg:col-span-6 flex flex-col gap-y-3">
+          <motion.div
+            variants={itemVariant}
+            className="col-span-12 lg:col-span-6 flex flex-col gap-y-3"
+          >
             <label className="text-md font-bold">{t.contact.email}</label>
 
             <Input
@@ -97,9 +141,12 @@ export default function ContactMe() {
               placeholder={t.contact.email_placeholder}
               className="h-10! px-5 w-full rounded-sm! border-gray-400! dark:border-[#444]! dark:bg-[#0f0f0f] dark:text-white dark:placeholder:text-gray-500"
             />
-          </div>
+          </motion.div>
 
-          <div className="col-span-12 lg:col-span-6 flex flex-col gap-y-3">
+          <motion.div
+            variants={itemVariant}
+            className="col-span-12 lg:col-span-6 flex flex-col gap-y-3"
+          >
             <label className="text-md font-bold">{t.contact.phone} </label>
 
             <Input
@@ -109,9 +156,12 @@ export default function ContactMe() {
               placeholder={t.contact.phone_placeholder}
               className="h-10! px-5 w-full rounded-sm! border-gray-400! dark:border-[#444]! dark:bg-[#0f0f0f] dark:text-white dark:placeholder:text-gray-500"
             />
-          </div>
+          </motion.div>
 
-          <div className="col-span-12 lg:col-span-6 flex flex-col gap-y-3">
+          <motion.div
+            variants={itemVariant}
+            className="col-span-12 lg:col-span-6 flex flex-col gap-y-3"
+          >
             <label className="text-md font-bold">{t.contact.subject}</label>
 
             <Input
@@ -121,9 +171,12 @@ export default function ContactMe() {
               placeholder={t.contact.subject_placeholder}
               className="h-10! px-5 w-full rounded-sm! border-gray-400! dark:border-[#444]! dark:bg-[#0f0f0f] dark:text-white dark:placeholder:text-gray-500"
             />
-          </div>
+          </motion.div>
 
-          <div className="col-span-12 flex flex-col gap-y-3">
+          <motion.div
+            variants={itemVariant}
+            className="col-span-12 flex flex-col gap-y-3"
+          >
             <label className="text-md font-bold">{t.contact.message}</label>
 
             <Textarea
@@ -132,23 +185,38 @@ export default function ContactMe() {
               placeholder={t.contact.message_placeholder}
               className="h-50! px-5 w-full rounded-sm! border-gray-400! dark:border-[#444]! dark:bg-[#0f0f0f] dark:text-white dark:placeholder:text-gray-500"
             />
-          </div>
+          </motion.div>
         </div>
 
-        <Button
-          type="submit"
-          disabled={loading}
-          className="py-8 text-xl font-bold flex gap-x-3 items-center"
-        >
-          {loading ? t.contact.sending : t.contact.send_message_button}
-          <FiSend />
-        </Button>
+        <motion.div variants={itemVariant}>
+          <motion.div
+            whileHover={{
+              scale: 1.03,
+              y: -2,
+            }}
+            whileTap={{
+              scale: 0.96,
+            }}
+          >
+            <Button
+              type="submit"
+              disabled={loading}
+              className="py-8 text-xl font-bold flex gap-x-3 items-center"
+            >
+              {loading ? t.contact.sending : t.contact.send_message_button}
+              <FiSend />
+            </Button>
+          </motion.div>
+        </motion.div>
 
-        <p className="text-center flex gap-x-3 items-center justify-center text-md leading-8 text-gray-600 dark:text-gray-400 ">
+        <motion.p
+          variants={itemVariant}
+          className="text-center flex gap-x-3 items-center justify-center text-md leading-8 text-gray-600 dark:text-gray-400 "
+        >
           <CiLock />
           {t.contact.note}
-        </p>
-      </form>
-    </div>
+        </motion.p>
+      </motion.form>
+    </motion.div>
   );
 }

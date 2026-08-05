@@ -7,8 +7,6 @@ import NavbarSidebar from "../navbar_sidebar/NavbarSidebar";
 import { FaRegMoon } from "react-icons/fa";
 import { useTheme } from "@/hooks/use-theme";
 import { IoSunnyOutline } from "react-icons/io5";
-import { useLocale, useTranslations } from "next-intl";
-import { useRouter } from "next/navigation";
 import { useLanguage } from "@/components/language-provider";
 
 export default function Navbar() {

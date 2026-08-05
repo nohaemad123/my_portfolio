@@ -1,18 +1,53 @@
-"use client"
+"use client";
 import { ProjectsData } from "@/data/projectsData";
 import { technologyIcons } from "@/data/technologies";
 import { BriefcaseBusiness, BadgeCheck } from "lucide-react";
 import { FaCode } from "react-icons/fa";
 import { IoLayersOutline } from "react-icons/io5";
 import { useLanguage } from "../language-provider";
+import { motion } from "motion/react";
 
 export default function StatisticsSection() {
   const { locale, setLocale, t } = useLanguage();
 
+  const containerVariants = {
+    hidden: {},
+    show: {
+      transition: {
+        staggerChildren: 0.2,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: {
+      opacity: 0,
+      y: 40,
+    },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5,
+      },
+    },
+  };
+
   return (
-    <div className=" grid grid-cols-12 mt-8 h-full gap-y-10 lg:gap-x-8 items-center bg-white dark:bg-[#151515] px-1 py-6 md:px-6 rounded-md shadow-md border">
-      {/* Years Experience */}
-      <div className="col-span-12 lg:col-span-3">
+    <motion.div
+      variants={containerVariants}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true, amount: 0.3 }}
+      className=" grid grid-cols-12 mt-8 h-full gap-y-10 lg:gap-x-8 items-center bg-white dark:bg-[#151515] px-1 py-6 md:px-6 rounded-md shadow-md border"
+    >
+      <motion.div
+  variants={itemVariants}
+  whileHover={{
+    y: -6,
+    scale: 1.02,
+  }}
+  transition={{ duration: 0.2 }} className="col-span-12 lg:col-span-3">
         <div className="relative">
           <div className="flex items-start gap-4 pr-5">
             <div className="w-15 h-15 icon">
@@ -36,10 +71,15 @@ export default function StatisticsSection() {
 
           <div className="absolute end-0 top-0 hidden h-full w-px bg-gray-200 dark:bg-[#2a2a2a] xl:block" />
         </div>
-      </div>
+      </motion.div>
 
-      {/* Projects */}
-      <div className="col-span-12 lg:col-span-3">
+      <motion.div
+  variants={itemVariants}
+  whileHover={{
+    y: -6,
+    scale: 1.02,
+  }}
+  transition={{ duration: 0.2 }} className="col-span-12 lg:col-span-3">
         <div className="relative">
           <div className="flex items-start gap-4 pr-5">
             <div className="w-15 h-15 icon">
@@ -63,10 +103,15 @@ export default function StatisticsSection() {
 
           <div className="absolute end-0 top-0 hidden h-full w-px bg-gray-200 dark:bg-[#2a2a2a] xl:block" />
         </div>
-      </div>
+      </motion.div>
 
-      {/* Technologies */}
-      <div className="col-span-12 lg:col-span-3">
+      <motion.div
+  variants={itemVariants}
+  whileHover={{
+    y: -6,
+    scale: 1.02,
+  }}
+  transition={{ duration: 0.2 }} className="col-span-12 lg:col-span-3">
         <div className="relative">
           <div className="flex items-start gap-4 pr-5">
             <div className="w-15 h-15 icon">
@@ -89,10 +134,15 @@ export default function StatisticsSection() {
           </div>
           <div className="absolute end-0 top-0 hidden h-full w-px bg-gray-200 dark:bg-[#2a2a2a] xl:block" />
         </div>
-      </div>
+      </motion.div>
 
-      {/* Satisfaction */}
-      <div className="col-span-12 lg:col-span-3">
+      <motion.div
+  variants={itemVariants}
+  whileHover={{
+    y: -6,
+    scale: 1.02,
+  }}
+  transition={{ duration: 0.2 }} className="col-span-12 lg:col-span-3">
         <div className="relative">
           <div className="flex items-start gap-4 pr-5">
             <div className="w-15 h-15 icon">
@@ -126,7 +176,7 @@ export default function StatisticsSection() {
             </div>
           </div>
         </div>
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 }

@@ -6,6 +6,7 @@ import Link from "next/link";
 
 import { ProjectType } from "@/types/projectType";
 import { useLanguage } from "@/components/language-provider";
+import { motion } from "motion/react";
 
 interface ProjectCardProps {
   projectDetails: ProjectType;
@@ -19,38 +20,94 @@ export default function ProjectCard({ projectDetails }: ProjectCardProps) {
   const { image, name, type, short_description, links, slug } = projectDetails;
 
   return (
-    <div
+    <motion.div
+      whileHover={{
+        y: -8,
+      }}
+      transition={{
+        duration: 0.3,
+      }}
       onClick={() => router.push(`/projects/${slug}`)}
       className="group cursor-pointer overflow-hidden rounded-2xl border border-gray-200 dark:border-[#2a2a2a] bg-white dark:bg-[#151515] shadow-lg transition hover:shadow-2xl"
     >
       <div className="relative h-64 overflow-hidden">
-        <Image
-          src={image}
-          alt={locale === "en" ? name.en : name.ar}
-          fill
-          className="object-cover object-top transition duration-700 group-hover:scale-105"
-        />
+        <motion.div
+          whileHover={{ scale: 1.08 }}
+          transition={{ duration: 0.6 }}
+          className="h-full w-full"
+        >
+          <Image
+            src={image}
+            alt={locale === "en" ? name.en : name.ar}
+            fill
+            className="object-cover object-top transition duration-700 group-hover:scale-105"
+          />
+        </motion.div>
 
-        <div className="absolute inset-x-0 bottom-0 flex flex-col gap-y-2 bg-gradient-to-t from-black via-black/70 to-transparent p-5 transition-all duration-500 group-hover:translate-y-full group-hover:opacity-0">
-          <h3 className="text-2xl font-bold text-white">
+        <motion.div
+          initial={{
+            opacity: 0,
+          }}
+          whileHover={{
+            opacity: 1,
+          }}
+          className="absolute inset-x-0 bottom-0 flex flex-col gap-y-2 bg-gradient-to-t from-black via-black/70 to-transparent p-5 transition-all duration-500 group-hover:translate-y-full group-hover:opacity-0"
+        >
+          <motion.h3
+            initial={{
+              y: 15,
+              opacity: 0,
+            }}
+            whileHover={{
+              y: 0,
+              opacity: 1,
+            }}
+            transition={{
+              delay: 0.1,
+            }}
+            className="text-2xl font-bold text-white"
+          >
             {locale === "en" ? name.en : name.ar}
-          </h3>
+          </motion.h3>
 
-          <span className=" w-fit rounded-full border border-primary/20 bg-primary px-3 py-1 text-xs font-medium text-white">
+          <motion.span
+            whileHover={{
+              scale: 1.05,
+            }}
+            className=" w-fit rounded-full border border-primary/20 bg-primary px-3 py-1 text-xs font-medium text-white"
+          >
             {locale === "en" ? type.en : type.ar}
-          </span>
-        </div>
+          </motion.span>
+        </motion.div>
 
         <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/80 px-6 text-center opacity-0 transition-all duration-500 translate-y-8 group-hover:translate-y-0 group-hover:opacity-100">
           <h3 className="mb-3 text-2xl font-bold text-white">
             {locale === "en" ? name.en : name.ar}
           </h3>
 
-          <p className="mb-6 text-sm line-clamp-2 leading-7 text-gray-300">
+          <motion.p
+            animate={{
+              opacity: 1,
+              y: 0,
+            }}
+            transition={{
+              delay: 0.15,
+            }}
+            className="mb-6 text-sm line-clamp-2 leading-7 text-gray-300"
+          >
             {locale === "en" ? short_description.en : short_description.ar}
-          </p>
+          </motion.p>
 
-          <div className="flex flex-wrap justify-center gap-3">
+          <motion.div
+            animate={{
+              opacity: 1,
+              y: 0,
+            }}
+            transition={{
+              delay: 0.25,
+            }}
+            className="flex flex-wrap justify-center gap-3"
+          >
             {links?.demo && (
               <Link
                 href={links.demo}
@@ -81,9 +138,9 @@ export default function ProjectCard({ projectDetails }: ProjectCardProps) {
             >
               {t.all_projects.view_details}
             </Link>
-          </div>
+          </motion.div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
