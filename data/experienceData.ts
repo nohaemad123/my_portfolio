@@ -8,8 +8,8 @@ export const ExperienceData = [
       ar: "مطور واجهات أمامية",
     },
     period: {
-      en: "May 2022 - Present",
-      ar: "مايو 2022 - حتى الآن",
+      en: "May 2022 - Aug 2025",
+      ar: "مايو 2022 - اغسطس 2025",
     },
     company: "Alnasyan Tech",
     tools: [

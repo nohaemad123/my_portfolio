@@ -132,6 +132,14 @@ export default function HeroSection() {
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.96 }}
+                  onClick={() => {
+                    const link = document.createElement("a");
+                    link.href = "/noha emad Front end developer.pdf";
+                    link.download = "noha emad Front end developer.pdf";
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                  }}
                   className="group bg-primary text-white border border-primary hover:bg-transparent hover:text-primary transition-all duration-300 px-8 py-4 rounded-lg flex items-center gap-3 font-semibold cursor-pointer"
                 >
                   <IoMdDownload className="transition-transform duration-300 group-hover:translate-y-[1px]" />

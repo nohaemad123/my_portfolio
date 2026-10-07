@@ -85,8 +85,17 @@ export default function Footer() {
                     <FaArrowRight className="transition-transform duration-300 group-hover:translate-x-1" />
                   )}
                 </Link>
-                <button className="bg-transparent  text-white border text-lg font-bold border-gray-300 hover:bg-transparent hover:text-primary transition-all duration-300 px-6 py-3 rounded-lg flex items-center shadow-lg gap-3 cursor-pointer">
-                  <FileText size={16} /> {t.hero_section.download_cv}{" "}
+                <button
+                  onClick={() => {
+                    const link = document.createElement("a");
+                    link.href = "/noha emad Front end developer.pdf";
+                    link.download = "noha emad Front end developer.pdf";
+                    link.click();
+                  }}
+                  className="bg-transparent text-white border text-lg font-bold border-gray-300 hover:bg-transparent hover:text-primary transition-all duration-300 px-6 py-3 rounded-lg flex items-center shadow-lg gap-3 cursor-pointer"
+                >
+                  <FileText size={16} />
+                  {t.hero_section.download_cv}
                   <HiArrowDownTray />
                 </button>
               </motion.div>
